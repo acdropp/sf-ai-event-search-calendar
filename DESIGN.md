@@ -99,7 +99,7 @@ Layout details:
   - current or future week: `minmax(72px, (1 + 0.6n)fr)`
   - n is the max chips per day, capped at 4. This only applies to grids with 4 or more rows.
 - **Chips** are not links. Clicking one opens the day popover. Only **Open event** leaves the page.
-- **Rich chips** (2 weeks, 1 week, 3 days): name at 0.76rem, then time, type emojis and place at 0.9em regular weight, one line group each. A fit pass per day block steps `data-fit` 3 → 0 (drop place, then emojis, then time) until the block stops overflowing, then hides trailing chips behind "+N ▲". Portrait rows share the remaining window height (min 150px). The 3-day grid has 3 columns.
+- **Rich chips** (Month, 2 weeks, 1 week, 3 days): name at 0.76rem, then time, type emojis and place at 0.9em regular weight, one line group each. A fit pass per day block steps `data-fit` 3 → 0 (drop place, then emojis, then time) until the block stops overflowing, then hides trailing chips behind "+N ▲". Portrait week-style rows share the remaining window height (min 150px); stacked portrait months stay 44dvh tall so chips fit to them. The 3-day grid has 3 columns.
 - **Day popover:** white sheet with a pastel header, radius 16. Rows expand to the full detail.
   - **Draggable:** the header is the handle (6-dot grip on the left, grab cursor). Drag it with mouse, finger or pen.
     It can slide partly off the bottom or sides to uncover the grid, but the header always stays on-screen.

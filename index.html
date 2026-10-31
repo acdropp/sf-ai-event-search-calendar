@@ -477,7 +477,7 @@
     .cal .ev { font-size: 7.5px; line-height: 1.2; padding: 2px 3px; border-left-width: 2px; -webkit-line-clamp: 3; max-height: calc(3.6em + 4px); }
   }
 
-  /* Rich chips (2-week / 1-week / 3-day): full names, then time, type emojis and place as space allows */
+  /* Rich chips (month / 2-week / 1-week / 3-day): full names, then time, type emojis and place as space allows */
   .cals.threeday .dow, .cals.threeday .grid { grid-template-columns: repeat(3, 1fr); }
   .cal .ev.rich {
     display: flex; flex-direction: column; gap: 1px; flex: 0 0 auto;
@@ -490,6 +490,8 @@
   .cell[data-fit="1"] .ev-loc, .cell[data-fit="1"] .ev-emo,
   .cell[data-fit="0"] .ev-sub { display: none; }
   .ev.rich[hidden] { display: none; }
+  /* Portrait month stack: keep each month at its usual 44dvh so rich chips fit to it instead of stretching it */
+  @media (orientation: portrait) { .cals.richmode:not(.weekmode) .cal { height: 44dvh; } }
   .ev.rich.clamp .ev-name { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
 
   /* 1-day agenda view (great on phones): the day's events as readable rows */
@@ -964,20 +966,20 @@
     });
   }
 
-  // Rich chips (2-week / 1-week / 3-day): each day block shows full event names, then adds time,
+  // Rich chips (month / 2-week / 1-week / 3-day): each day block shows full event names, then adds time,
   // type emojis and place while they still fit; as space shrinks they drop in reverse order.
   // Names always stay; if even the names overflow, the last chips hide behind "+N".
   function fitRich() {
     var host = document.querySelector("#cals.richmode:not([hidden])"); if (!host) return;
     var g = host.querySelector(".grid"); if (!g) return;
-    if (!window.matchMedia("(orientation: landscape)").matches) {
+    if (host.classList.contains("weekmode") && !window.matchMedia("(orientation: landscape)").matches) {
       // Portrait: rows share the window's remaining height (min 150px) instead of growing without end
       var cols = host.classList.contains("threeday") ? 3 : 7, rows = Math.ceil(g.children.length / cols);
       var top = g.getBoundingClientRect().top + window.scrollY;
       var h = Math.max(150, Math.floor((window.innerHeight - top - 24 - 3 * (rows - 1)) / rows));
       g.style.gridTemplateRows = "repeat(" + rows + ", " + h + "px)";
     }
-    [].forEach.call(g.querySelectorAll(".cell.has"), function (c) {
+    [].forEach.call(host.querySelectorAll(".grid .cell.has"), function (c) {
       var chips = c.querySelectorAll(".ev.rich"), pill = c.querySelector(".morepill");
       if (pill) pill.remove();
       c.classList.remove("crowded");
@@ -1438,11 +1440,10 @@
   function singleMode() {
     return window.matchMedia("(orientation: landscape)").matches;
   }
-  // 2-week / 1-week / 3-day chips grow to show full names plus whatever details fit.
+  // Month / 2-week / 1-week / 3-day chips grow to show full names plus whatever details fit.
   // Phones keep the tiny-name chips in the 7-column views; 3 columns are wide enough for rich chips.
   function richMode() {
-    return (calMode === "week" || calMode === "2week" || calMode === "3day") &&
-      (calMode === "3day" || window.innerWidth > 560);
+    return calMode !== "day" && (calMode === "3day" || window.innerWidth > 560);
   }
 
   function render() {
@@ -1452,8 +1453,9 @@
     var t = today();
     var host = document.getElementById("cals");
     var count = singleMode() ? 1 : 3;
-    host.className = "cals" + (count === 1 ? " one" : "");
-    chipCap = CHIP_CAP;   /* rows are sized by content, so the fill view can show 3 chips too */  // fewer chips per day in the height-constrained fill view
+    var rich = richMode();
+    host.className = "cals" + (count === 1 ? " one" : "") + (rich ? " richmode" : "");
+    chipCap = rich ? Infinity : CHIP_CAP;   /* rows are sized by content, so the fill view can show 3 chips too */  // fewer chips per day in the height-constrained fill view
     var html = "";
     for (var i = 0; i < count; i++) {
       var mm = addMonths(ref.y, ref.m, i);
