@@ -116,6 +116,8 @@ is specified in `DESIGN.md`.
 - **Context-aware wheel:** scrolls the page in the stacked view; navigates months in the single-month landscape fill view.
 - **Today** resets to the current month. A clickable month/year heading opens the picker.
 - **Month rows are sized by content** (empty and past weeks shrink, busy current/future weeks grow).
+- **Range menu:** Month · 2 weeks · 1 week · 3 days · 1 day. 3 days starts today (arrows move 3 days; headings show the actual weekdays). Deep link `?cal=3day&w=YYYY-MM-DD`.
+- **Rich chips (2 weeks, 1 week, 3 days):** each chip shows the full event name, then, while the day block still has room, the time (start–end), the type emojis and the place. As space shrinks they drop in reverse order (place, emojis, time); the name always stays, and if even the names don't fit the last chips hide behind "+N ▲". In portrait the rows share the window height (min 150px). Phones keep tiny-name chips in 2 weeks / 1 week; 3 days uses rich chips on phones too. 1 day already shows full rows.
 - **Event chips** show name-first (with a "new" dot) and carry score tier + verify styling. **Score + past dimming:** score ≤2 / `needsVerification` / past days are dimmed but never hidden.
 - **Chips are not links.** Only **Open event** in the detail leaves the page.
 - **Clicking any day — a chip or empty space, one event or many — opens the anchored day popover** (fit-to-content, capped scroll, keyboard nav, edge-flipping) listing that day's events. Each popover row is the same expandable row as the list view: click it to reveal the full detail (When/Where/Setting/Admission/Format/Source, themes, why-it-fits, **Open event** and **Add to calendar**). Crowded cells cap chips and show a "+N ▲" triangle.
