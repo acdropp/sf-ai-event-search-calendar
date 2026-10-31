@@ -477,6 +477,23 @@
     .cal .ev { font-size: 7.5px; line-height: 1.2; padding: 2px 3px; border-left-width: 2px; -webkit-line-clamp: 3; max-height: calc(3.6em + 4px); }
   }
 
+  /* Rich chips (month / 2-week / 1-week / 3-day): full names, then time, type emojis and place as space allows */
+  .cals.threeday .dow, .cals.threeday .grid { grid-template-columns: repeat(3, 1fr); }
+  .cal .ev.rich {
+    display: flex; flex-direction: column; gap: 1px; flex: 0 0 auto;
+    -webkit-line-clamp: unset; max-height: none; overflow: visible;
+    font-size: 0.76rem; line-height: 1.25; padding: 3px 6px;
+  }
+  .ev.rich .ev-sub { font-size: 0.9em; font-weight: 400; }
+  .ev.rich .ev-emo { letter-spacing: 0.06em; }
+  .cell[data-fit="2"] .ev-loc,
+  .cell[data-fit="1"] .ev-loc, .cell[data-fit="1"] .ev-emo,
+  .cell[data-fit="0"] .ev-sub { display: none; }
+  .ev.rich[hidden] { display: none; }
+  /* Portrait month stack: keep each month at its usual 44dvh so rich chips fit to it instead of stretching it */
+  @media (orientation: portrait) { .cals.richmode:not(.weekmode) .cal { height: 44dvh; } }
+  .ev.rich.clamp .ev-name { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+
   /* 1-day agenda view (great on phones): the day's events as readable rows */
   .cals.dayview { display: block; }
   .cals.dayview[hidden] { display: none; }   /* otherwise List view on phones also shows an empty day view */
@@ -949,6 +966,42 @@
     });
   }
 
+  // Rich chips (month / 2-week / 1-week / 3-day): each day block shows full event names, then adds time,
+  // type emojis and place while they still fit; as space shrinks they drop in reverse order.
+  // Names always stay; if even the names overflow, the last chips hide behind "+N".
+  function fitRich() {
+    var host = document.querySelector("#cals.richmode:not([hidden])"); if (!host) return;
+    var g = host.querySelector(".grid"); if (!g) return;
+    if (host.classList.contains("weekmode") && !window.matchMedia("(orientation: landscape)").matches) {
+      // Portrait: rows share the window's remaining height (min 150px) instead of growing without end
+      var cols = host.classList.contains("threeday") ? 3 : 7, rows = Math.ceil(g.children.length / cols);
+      var top = g.getBoundingClientRect().top + window.scrollY;
+      var h = Math.max(150, Math.floor((window.innerHeight - top - 24 - 3 * (rows - 1)) / rows));
+      g.style.gridTemplateRows = "repeat(" + rows + ", " + h + "px)";
+    }
+    [].forEach.call(host.querySelectorAll(".grid .cell.has"), function (c) {
+      var chips = c.querySelectorAll(".ev.rich"), pill = c.querySelector(".morepill");
+      if (pill) pill.remove();
+      c.classList.remove("crowded");
+      [].forEach.call(chips, function (e) { e.hidden = false; e.classList.remove("clamp"); e.firstChild.style.webkitLineClamp = ""; });
+      var over = function () { return c.scrollHeight > c.clientHeight + 1; };
+      var lvl = 3;
+      c.setAttribute("data-fit", lvl);
+      while (lvl > 0 && over()) c.setAttribute("data-fit", --lvl);
+      if (!over()) return;
+      c.classList.add("crowded");
+      var n = chips.length, hid = 0;
+      while (n - hid > 1 && over()) chips[n - 1 - hid++].hidden = true;
+      if (hid) c.insertAdjacentHTML("beforeend", '<span class="morepill">+' + hid + '<span class="tri"></span></span>');
+      else c.classList.remove("crowded");
+      if (over()) {   // very short blocks (phone landscape): the one name left gets as many lines as fit
+        var e = chips[0], nm = e.firstChild, lh = parseFloat(getComputedStyle(nm).lineHeight) || 12;
+        var room = c.getBoundingClientRect().bottom - (hid ? 24 : 9) - nm.getBoundingClientRect().top;
+        e.classList.add("clamp"); nm.style.webkitLineClamp = Math.max(1, Math.floor(room / lh));
+      }
+    });
+  }
+
   // Header edges follow the day grid: the title starts at Sunday's left edge, 🔍 ends at Saturday's right edge.
   // Without a visible grid (list / day view) use the same inset from the page column the grid would have.
   function alignHeader() {
@@ -970,9 +1023,10 @@
     var pending = false;
     new MutationObserver(function () {
       if (pending) return; pending = true;
-      requestAnimationFrame(function () { pending = false; weightRows(); alignHeader(); });
+      requestAnimationFrame(function () { pending = false; weightRows(); alignHeader(); fitRich(); });
     }).observe(cals, { childList: true, attributes: true, attributeFilter: ["hidden"] });
-    window.addEventListener("resize", function () { requestAnimationFrame(alignHeader); });
+    window.addEventListener("resize", function () { requestAnimationFrame(function () { alignHeader(); fitRich(); }); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fitRich(); });
     new MutationObserver(function () { requestAnimationFrame(alignHeader); }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
     // 🔍 search toggle
@@ -1034,6 +1088,7 @@
           <option value="month">Month</option>
           <option value="2week">2 weeks</option>
           <option value="week">1 week</option>
+          <option value="3day">3 days</option>
           <option value="day">1 day</option>
         </select>
         <button class="btn-today" id="todayBtn" type="button">Today</button>
@@ -1189,12 +1244,12 @@
   // Phones always open in List (Calendar is one deliberate tap away); wider screens restore the last tapped view.
   if (view !== "list") { try { var picked = localStorage.getItem(VIEW_KEY); if (picked === "list" || picked === "calendar") view = picked; } catch (e) {} }
 
-  // Calendar range mode: month (adaptive 1/3 months) | week (1 week) | 2week (2 weeks)
+  // Calendar range mode: month (adaptive 1/3 months) | 2week | week | 3day (3 days from the anchor) | day
   var CALMODE_KEY = "radar-calmode";
   var calMode = "month";
   var calModeStored = false;    // did the viewer already pick a range mode?
   var urlCalSet = false;        // did a deep link specify the range mode?
-  try { var _cm = localStorage.getItem(CALMODE_KEY); if (_cm === "week" || _cm === "2week" || _cm === "day") { calMode = _cm; calModeStored = true; } } catch (e) {}
+  try { var _cm = localStorage.getItem(CALMODE_KEY); if (_cm === "week" || _cm === "2week" || _cm === "3day" || _cm === "day") { calMode = _cm; calModeStored = true; } } catch (e) {}
   var weekStart = null;         // ISO anchor date for day / week / 2-week modes
 
   // ----- Pure date helpers -----
@@ -1329,14 +1384,23 @@
       var nb = ev.status === "new" ? '<span class="nbadge">•</span>' : "";
       var warn = regionInfo(ev).warn ? "⚠️ " : "";   // outside SF → flag on the chip
       var emo = fmtTags(ev).map(function (f) { return f.emoji; }).join("");   // type emojis
-      var t2 = timeStr(ev);
+      var t2 = ev.startTime ? (ev.startTime + (ev.endTime ? "–" + ev.endTime : "")) : "";
       var tip = warn + (t2 ? t2 + "  ·  " : "") + ev.name;
+      if (chipCap === Infinity) {   // rich chip: full name, then time, type emojis, place (fitRich drops them from the end)
+        var place = [ev.venue, ev.city].filter(Boolean).join(", ");
+        html += '<a class="ev rich s-' + tier + (ev.needsVerification ? " verify" : "") + '" role="button" title="' + esc(tip) + '">' +
+          '<span class="ev-name">' + nb + warn + esc(ev.name) + "</span>" +
+          (t2 ? '<span class="ev-sub ev-time">' + esc(t2) + "</span>" : "") +
+          (emo ? '<span class="ev-sub ev-emo">' + fmtTags(ev).map(function (f) { return f.emoji; }).join(" ") + "</span>" : "") +
+          (place ? '<span class="ev-sub ev-loc">' + esc(place) + "</span>" : "") + "</a>";
+        return;
+      }
       html += '<a class="ev s-' + tier + (ev.needsVerification ? " verify" : "") + (emo ? " has-emoji" : "") +
         '" role="button" title="' + esc(tip) + '">' +
         nb + warn + (emo ? '<span class="ev-emoji">' + emo + "</span>" : "") +
         '<span class="ev-name">' + esc(ev.name) + "</span></a>";
     });
-    if (crowded) {
+    if (crowded && chipCap !== Infinity) {
       html += '<span class="morepill">+' + (evs.length - chipCap) + '<span class="tri"></span></span>';
     }
     html += "</div>";
@@ -1376,16 +1440,22 @@
   function singleMode() {
     return window.matchMedia("(orientation: landscape)").matches;
   }
+  // Month / 2-week / 1-week / 3-day chips grow to show full names plus whatever details fit.
+  // Phones keep the tiny-name chips in the 7-column views; 3 columns are wide enough for rich chips.
+  function richMode() {
+    return calMode !== "day" && (calMode === "3day" || window.innerWidth > 560);
+  }
 
   function render() {
     document.body.classList.remove("cal-day");
     if (calMode === "day") { renderDay(); return; }
-    if (calMode === "week" || calMode === "2week") { renderWeeks(); return; }
+    if (calMode === "week" || calMode === "2week" || calMode === "3day") { renderWeeks(); return; }
     var t = today();
     var host = document.getElementById("cals");
     var count = singleMode() ? 1 : 3;
-    host.className = "cals" + (count === 1 ? " one" : "");
-    chipCap = CHIP_CAP;   /* rows are sized by content, so the fill view can show 3 chips too */  // fewer chips per day in the height-constrained fill view
+    var rich = richMode();
+    host.className = "cals" + (count === 1 ? " one" : "") + (rich ? " richmode" : "");
+    chipCap = rich ? Infinity : CHIP_CAP;   /* rows are sized by content, so the fill view can show 3 chips too */  // fewer chips per day in the height-constrained fill view
     var html = "";
     for (var i = 0; i < count; i++) {
       var mm = addMonths(ref.y, ref.m, i);
@@ -1412,10 +1482,11 @@
   function renderWeeks() {
     var t = today();
     var host = document.getElementById("cals");
-    var nDays = (calMode === "2week" ? 14 : 7);
-    host.className = "cals one weekmode";
-    chipCap = (calMode === "2week" ? 6 : 8);   // tall cells → show more before "+N"
-    if (!weekStart) weekStart = sundayOf(todayISO());
+    var nDays = (calMode === "2week" ? 14 : calMode === "3day" ? 3 : 7);
+    var rich = richMode();
+    host.className = "cals one weekmode" + (calMode === "3day" ? " threeday" : "") + (rich ? " richmode" : "");
+    chipCap = rich ? Infinity : (calMode === "2week" ? 6 : 8);   // rich chips: fitRich() decides what fits
+    if (!weekStart) weekStart = (calMode === "3day") ? todayISO() : sundayOf(todayISO());
     var sp = isoParts(weekStart), ep = isoParts(addDaysISO(weekStart, nDays - 1));
     var title = MONTHS[sp.m] + ' <span class="yr">' + sp.y + "</span>";   // Month Year (no day range)
 
@@ -1425,7 +1496,9 @@
     html += '<span class="cal-title-static">' + title + "</span>";
     html += '<button class="nav" type="button" data-nav="next" aria-label="Next">›</button>';
     html += "</div>";
-    html += '<div class="dow">' + DOW.map(function (d) { return "<span>" + d + "</span>"; }).join("") + "</div>";
+    var heads = DOW;
+    if (calMode === "3day") heads = [0, 1, 2].map(function (k) { var q = isoParts(addDaysISO(weekStart, k)); return DOW[new Date(q.y, q.m, q.d).getDay()]; });
+    html += '<div class="dow">' + heads.map(function (d) { return "<span>" + d + "</span>"; }).join("") + "</div>";
     html += '<div class="grid">';
     for (var i = 0; i < nDays; i++) {
       var p = isoParts(addDaysISO(weekStart, i));
@@ -1434,7 +1507,7 @@
     html += "</div></section>";
     host.innerHTML = html;
 
-    var sub = (calMode === "2week" ? "2 weeks" : "1 week") + " · " + MONTHS[sp.m] + " " + sp.y;
+    var sub = (calMode === "2week" ? "2 weeks" : calMode === "3day" ? "3 days" : "1 week") + " · " + MONTHS[sp.m] + " " + sp.y;
     if (meta && meta.generatedAt) sub += "  ·  data as of " + String(meta.generatedAt).slice(0, 10);
     var _s = document.getElementById("sub"); if (_s) _s.textContent = sub;
     adjustTbc();
@@ -1466,13 +1539,13 @@
   }
 
   function setCalMode(m) {
-    if (m !== "week" && m !== "2week" && m !== "day") m = "month";
+    if (m !== "week" && m !== "2week" && m !== "3day" && m !== "day") m = "month";
     calMode = m;
     try { localStorage.setItem(CALMODE_KEY, m); } catch (e) {}
     if (m === "week" || m === "2week") {
       weekStart = sundayOf(todayISO());          // show the week today is part of
-    } else if (m === "day") {
-      weekStart = todayISO();                    // show today
+    } else if (m === "day" || m === "3day") {
+      weekStart = todayISO();                    // start at today
     } else if (weekStart) {
       var p = isoParts(weekStart); ref = { y: p.y, m: p.m };   // month of where we were
     } else {
@@ -1863,9 +1936,9 @@
     var q;
     try { q = new URLSearchParams(location.search); } catch (e) { return; }
     var v = q.get("v"); if (v === "list" || v === "calendar") view = v;
-    var cm = q.get("cal"); if (cm === "week" || cm === "2week" || cm === "month" || cm === "day") { calMode = cm; urlCalSet = true; }
+    var cm = q.get("cal"); if (cm === "week" || cm === "2week" || cm === "3day" || cm === "month" || cm === "day") { calMode = cm; urlCalSet = true; }
     var w = q.get("w");
-    if (w && /^\d{4}-\d{2}-\d{2}$/.test(w)) { weekStart = (calMode === "day") ? w : sundayOf(w); urlRefSet = true; }
+    if (w && /^\d{4}-\d{2}-\d{2}$/.test(w)) { weekStart = (calMode === "day" || calMode === "3day") ? w : sundayOf(w); urlRefSet = true; }
     var m = q.get("m");
     if (m && /^\d{4}-\d{1,2}$/.test(m)) {
       var pp = m.split("-"), yy = +pp[0], mm = +pp[1] - 1;
@@ -1885,7 +1958,7 @@
     var q = new URLSearchParams();
     q.set("v", view);
     if (view === "calendar") {
-      if (calMode === "week" || calMode === "2week" || calMode === "day") { q.set("cal", calMode); if (weekStart) q.set("w", weekStart); }
+      if (calMode !== "month") { q.set("cal", calMode); if (weekStart) q.set("w", weekStart); }
       else q.set("m", ref.y + "-" + pad(ref.m + 1));
     }
     if (filters.q) q.set("q", filters.q);
@@ -1932,6 +2005,7 @@
     var y = window.scrollY;
     if (calMode === "week") weekStart = addDaysISO(weekStart, delta * 7);
     else if (calMode === "2week") weekStart = addDaysISO(weekStart, delta * 14);
+    else if (calMode === "3day") weekStart = addDaysISO(weekStart, delta * 3);
     else if (calMode === "day") weekStart = addDaysISO(weekStart, delta);
     else ref = addMonths(ref.y, ref.m, delta);
     render();
@@ -1943,7 +2017,7 @@
     closeDayPop();
     var t = today();
     if (calMode === "week" || calMode === "2week") weekStart = sundayOf(todayISO());
-    else if (calMode === "day") weekStart = todayISO();
+    else if (calMode === "day" || calMode === "3day") weekStart = todayISO();
     else ref = { y: t.y, m: t.m };
     render();
     writeURL();
@@ -2224,7 +2298,8 @@
     window.addEventListener("resize", function () {
       closeDayPop(); // its anchor would be stale after a resize
       var m = singleMode();
-      if (m !== mode) { mode = m; render(); }
+      var r = richMode(), wasRich = !!document.querySelector("#cals.richmode");
+      if (m !== mode || (view === "calendar" && r !== wasRich)) { mode = m; render(); }
       else adjustTbc();   // same orientation, different aspect: re-check TBC fit
     });
     var mq = window.matchMedia("(orientation: landscape)");
@@ -2258,7 +2333,7 @@
   // First-time visitors on a small screen open in 1-day view (readable on a phone)
   if (!calModeStored && !urlCalSet && !urlRefSet && window.innerWidth <= 560) calMode = "day";
   if ((calMode === "week" || calMode === "2week") && !weekStart) weekStart = sundayOf(todayISO());
-  if (calMode === "day" && !weekStart) weekStart = todayISO();
+  if ((calMode === "day" || calMode === "3day") && !weekStart) weekStart = todayISO();
   loadData().then(function (data) {
     normalize(data);              // rebuild() applies the filters from the URL
     renderStale();
