@@ -75,6 +75,8 @@ objects in the shape below. `scripts/build_events.py` writes it; both views read
 | `source` | string | Where it was found (Luma / Meetup / Hacker Dojo / …). Drives the source filter. |
 | `url` | string | Link to the event page — the click-through and calendar-export URL. |
 | `tags` | string[] | Format tags as `"emoji label"` (e.g. `"🦾 hackathon"`, `"🛠️ build"`). The list renders the emojis, normalized to a legend (🦾 hackathon, 🛠 build, 🎤 demo, 🗣 discussion, 🍻 social, 👩🏽‍🏫 lecture, 📚 book club). |
+| `agendaUrl` | string? | Optional. Link to the event's full agenda/schedule when it is on a different page from `url`. |
+| `agendaDayUrl` | string? | Optional. Link to the schedule for this event's `date` (multi-day events with per-day pages). |
 | `themes` | string[] | 2–5 theme phrases for the expanded detail. |
 | `fit` | string | The "why it fits you" sentence. |
 | `score` | number | 1–5 taste score. Drives ranking, dimming, and the score filter. |
@@ -106,7 +108,7 @@ filtered event set. Phones (≤600px wide) always open in List, with Calendar on
 pastel style, six colour themes each with a light and dark version, light blue default)
 is specified in `DESIGN.md`.
 
-- **Header:** "🔦 SF AI Event Search", then range menu and Today (both calendar only) · sun/moon theme toggle · icon-only Calendar/List toggle · 🔍 Filter & search. Controls never shift when switching views.
+- **Header:** "🔦 SF AI Event Search", then range menu and Today (both calendar only) · sun/moon theme toggle · icon-only Calendar/List toggle · 🔍 Filter & search · ⓘ key. Controls never shift when switching views.
 - **Themes:** the sun cycles light colours (blue → pink → purple → green → 🎃 orange → gold); the moon cycles the matching dark versions (ending on black & gold); switching between sun and moon keeps the colour. Saved per viewer.
 
 ### Calendar view
@@ -136,7 +138,8 @@ is specified in `DESIGN.md`.
 - **One "Filter & search" card, hidden behind the 🔍 header button** (the button shows a dot while filters are active; the card auto-opens only when a deep link arrives with filters). Applies to **both views**:
   keyword search (name / venue / city / themes / tags / fit), score ≥4, source (Luma / Meetup / Hacker Dojo), setting (in-person / online), SF-only distance, hide unverified/low-fit, and **event type** (a second row of chips: 🦾 hackathon, 🛠 collaborative build, 🎤 live demo, 🗣 discussion, 👩🏽‍🏫 lecture, 🍻 networking, 📚 book club; pick any number, an event shows if it has any picked type). Live match count + Clear.
 - **Shareable deep links:** view, month, and every filter are mirrored to the URL — e.g. `?v=list&s=4&dist=sf`, `?v=calendar&m=2026-11`, `?type=hack,net`.
-- **Key** at the bottom of both views: event types plus the symbols (strong match, match, unconfirmed, past, new, verify, ⚠️, region tag). It is always a single "ⓘ Key" button (clean by default); tapping it opens the key as a sheet (closes with ✕, Esc or a tap outside).
+- **Agenda bullet:** when the data has `agendaUrl` (full agenda) and/or `agendaDayUrl` (that day's schedule for a multi-day event), the expanded detail (list row and calendar popover) adds a 4th bullet: "📋 Agenda ↗", or "📋 Agenda: Nov 3 schedule ↗ · full agenda ↗". Links equal to the Open event URL are skipped.
+- **Key** behind the ⓘ header button in both views (the rightmost header control, right of 🔍): event types plus the symbols in two columns (left: strong match, match, past, unconfirmed (dashed lines); right: ⚠️ outside San Francisco, region tag, new, verify/unconfirmed). Tapping ⓘ opens the key (a drop-down panel on wide screens, a bottom sheet on phones) (closes with ✕, Esc or a tap outside).
 
 ### Add to calendar (per event)
 

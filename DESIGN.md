@@ -80,13 +80,14 @@ Left to right:
 - **Sun / moon toggle**
 - **Calendar / List toggle:** icon-only, calendar and notepad icons.
 - **🔍:** toggles Filter & search, and shows a dot when filters are on.
+- **ⓘ (key):** the rightmost control in both views, just right of 🔍. A 38×38 square like 🔍 with a circled italic "i"; opens the key.
 
 Layout details:
 
 - **Sizes:**
   - Range menu, Today, sun / moon and Calendar / List: identical 88×38 boxes.
   - 🔍: a 38×38 square.
-- **Alignment:** the header is full-bleed. The flashlight's left edge lines up with the Sunday column and the 🔍's right edge with the Saturday column. List and day views use the page column inset plus 15px.
+- **Alignment:** the header is full-bleed. The flashlight's left edge lines up with the Sunday column and the ⓘ's right edge with the Saturday column. List and day views use the page column inset plus 15px.
 - **Scaling:**
   - A scale unit `--u: clamp(0.72px, 0.105vw, 1px)` shrinks the title and all controls together on narrow screens.
   - Under about 560px the controls wrap to a second row, filling from the right.
@@ -126,7 +127,7 @@ the readable popover.
 
 ## Key
 
-Footer key with two groups, Types and Symbols (labels: strong match (4–5), match (1–3), …, plus a sample region tag). Always collapsed: a pill "ⓘ Key" button at the bottom of both views opens a bottom sheet (max 440px wide, grab handle, ✕) with the same two groups in a two-column grid.
+Footer key with two groups, Types and Symbols (labels: strong match (4–5), match (1–3), …, plus a sample region tag). The ⓘ button in the header (both views) opens a panel that drops down under the ⓘ on screens over 600px wide and is a bottom sheet with a grab handle on phones (max 440px wide, ✕ to close) with the same two groups in a two-column grid.
 
 ## Filter & search
 
