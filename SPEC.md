@@ -134,8 +134,9 @@ is specified in `DESIGN.md`.
 ### Filter, search & sharing
 
 - **One "Filter & search" card, hidden behind the 🔍 header button** (the button shows a dot while filters are active; the card auto-opens only when a deep link arrives with filters). Applies to **both views**:
-  keyword search (name / venue / city / themes / tags / fit), score ≥4, source (Luma / Meetup / Hacker Dojo), setting (in-person / online), SF-only distance, and hide unverified/low-fit. Live match count + Clear.
-- **Shareable deep links:** view, month, and every filter are mirrored to the URL — e.g. `?v=list&s=4&dist=sf`, `?v=calendar&m=2026-11`.
+  keyword search (name / venue / city / themes / tags / fit), score ≥4, source (Luma / Meetup / Hacker Dojo), setting (in-person / online), SF-only distance, hide unverified/low-fit, and **event type** (a second row of chips: 🦾 hackathon, 🛠 collaborative build, 🎤 live demo, 🗣 discussion, 👩🏽‍🏫 lecture, 🍻 networking, 📚 book club; pick any number, an event shows if it has any picked type). Live match count + Clear.
+- **Shareable deep links:** view, month, and every filter are mirrored to the URL — e.g. `?v=list&s=4&dist=sf`, `?v=calendar&m=2026-11`, `?type=hack,net`.
+- **Key** at the bottom of both views: event types plus the symbols (strong match, match, unconfirmed, past, new, verify, ⚠️, region tag). It is always a single "ⓘ Key" button (clean by default); tapping it opens the key as a sheet (closes with ✕, Esc or a tap outside).
 
 ### Add to calendar (per event)
 
