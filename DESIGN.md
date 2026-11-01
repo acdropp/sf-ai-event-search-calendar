@@ -124,6 +124,10 @@ On phones (560px or less), calendar chips show **tiny names**: 7.5px text, up to
 no emojis. Names often break mid-word; it's a glanceable overview, and tapping a day opens
 the readable popover.
 
+## Key
+
+Footer key with two groups, Types and Symbols (labels: strong match (4–5), match (1–3), …, plus a sample region tag). Always collapsed: a pill "ⓘ Key" button at the bottom of both views opens a bottom sheet (max 440px wide, grab handle, ✕) with the same two groups in a two-column grid.
+
 ## Filter & search
 
 Hidden by default, opened and closed with 🔍. It auto-opens when a deep link carries filters. Its border takes the page background colour, so there's no coloured outline.

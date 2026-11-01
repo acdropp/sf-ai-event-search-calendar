@@ -517,6 +517,29 @@
   .sw.grey { border-left-color: var(--line-strong); background: var(--surface-3); opacity: 0.5; }
   .sw.dashed { border: 1.5px dashed var(--accent); background: var(--accent-weak); }
 
+  /* Key: one clean "ⓘ Key" button at the bottom that opens the key as a sheet */
+  footer.legend { display: block; }
+  .keysheet h3 { font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--panel-title, var(--fg)); }
+  .keysheet .k { display: inline-flex; align-items: center; gap: 6px; }
+  .keysheet .sw { width: 10px; height: 10px; border-radius: 3px; border-left: 2px solid; display: inline-block; }
+  .lg-reg { font-size: 0.6rem !important; padding: 0 5px !important; }
+  .lg-btn { font: inherit; display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px 4px 5px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface, #fff); color: var(--fg); cursor: pointer; font-weight: 600; }
+  .lg-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .lg-i { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid currentColor; display: inline-grid; place-items: center; font: italic 700 0.75rem/1 Georgia, serif; }
+  .keysheet {
+    position: fixed; z-index: 70; left: 50%; transform: translateX(-50%);
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px)); width: min(440px, calc(100vw - 20px)); max-height: 72vh; overflow: auto;
+    background: var(--surface, #fff); color: var(--fg); border: 1px solid var(--line-strong); border-radius: 18px;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28); padding: 22px 18px 16px; font-size: 0.82rem;
+  }
+  .keysheet::before { content: ""; position: absolute; top: 8px; left: 50%; width: 36px; height: 4px; margin-left: -18px; border-radius: 2px; background: var(--line-strong); }
+  .keysheet h3 { font-size: 0.7rem; margin: 0 0 6px; }
+  .keysheet section + section { margin-top: 12px; }
+  .keysheet .kgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 5px 14px; }
+  .keysheet .kclose { position: absolute; top: 8px; right: 10px; border: 0; background: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; padding: 4px 8px; }
+  .fb-types .fchip { font-weight: 500; }
+  .keysheet[hidden] { display: none; }
+
   .empty-note { color: var(--faint); font-size: 0.85rem; padding: 20px; text-align: center; }
 
   /* Filter bar — one bordered, collapsible card (matches the TBC shelf) */
@@ -1132,6 +1155,7 @@
         <button class="fchip" data-f="hide" type="button">Hide unverified/low-fit</button>
         <button class="fchip clear" id="fClear" type="button" hidden>✕ Clear</button>
       </div>
+      <div class="fb-chips fb-types" id="fTypes" role="group" aria-label="Event type (pick any number)"></div>
     </div>
   </details>
 
@@ -1147,15 +1171,10 @@
     <div class="tbc-items" id="tbcItems"></div>
   </details>
 
-  <footer class="legend">
-    <span class="k"><span class="sw strong"></span> strong fit (4–5)</span>
-    <span class="k"><span class="sw blue"></span> fits (1–3)</span>
-    <span class="k"><span class="sw dashed"></span> unconfirmed (details not final)</span>
-    <span class="k"><span class="sw grey"></span> past (dimmed)</span>
-    <span class="k"><span class="pill new" style="font-size:0.6rem">new</span> newly found</span>
-    <span class="k"><span class="pill verify" style="font-size:0.6rem">verify</span> unconfirmed</span>
-    <span class="k">⚠️ event outside San Francisco</span>
+  <footer class="legend" id="legend">
+    <button class="lg-btn" id="lgBtn" type="button" aria-haspopup="dialog" aria-expanded="false"><span class="lg-i" aria-hidden="true">i</span> Key</button>
   </footer>
+  <div class="keysheet" id="keySheet" role="dialog" aria-label="Key: what the emojis and symbols mean" hidden></div>
 </div>
 
 <!-- Month / year picker -->
@@ -1237,8 +1256,12 @@
     setting: "all",             // "all" | "inperson" | "online"
     dist: "all",                // "all" | "sf"  (SF-proper only)
     hide: false,                // hide unverified / low-fit (≤2)
+    types: null,                // null = all; else event-type codes (any match shows the event)
     q: ""                       // keyword search
   };
+  // Event types shown in the key and the type filter: code, emoji (as fmtTags returns it), label
+  var EV_TYPES = [["hack", "🦾", "hackathon"], ["build", "🛠", "collaborative build"], ["demo", "🎤", "live demo"],
+    ["talk", "🗣", "discussion"], ["lecture", "👩🏽‍🏫", "lecture"], ["net", "🍻", "networking"], ["book", "📚", "book club"]];
   var pickerPanelIndex = 0;     // which calendar's heading opened the picker
   // Phones (≤600px wide) open in List; everything else opens in Calendar or the last view tapped on the toggle.
   // (The old "radar-view" key was written on every load, so it is ignored.)
@@ -1349,6 +1372,11 @@
     }
     if (filters.dist === "sf" && regionInfo(ev).warn) return false;   // SF-proper (and online) only
     if (filters.hide && (ev.needsVerification || (ev.score || 0) <= 2)) return false;
+    if (filters.types) {
+      var mine = fmtTags(ev).map(function (f) { return f.emoji; });
+      var hit = EV_TYPES.some(function (t) { return filters.types.indexOf(t[0]) >= 0 && mine.indexOf(t[1]) >= 0; });
+      if (!hit) return false;
+    }
     if (filters.q) {
       var hay = [ev.name, ev.venue, ev.city, ev.address, ev.fit,
         (ev.themes || []).join(" "), (ev.tags || []).join(" ")].join(" ").toLowerCase();
@@ -1358,7 +1386,7 @@
     return true;
   }
   function filtersActive() {
-    return !!(filters.minScore || filters.sources || filters.setting !== "all" || filters.dist === "sf" || filters.hide || filters.q);
+    return !!(filters.minScore || filters.sources || filters.setting !== "all" || filters.dist === "sf" || filters.hide || filters.types || filters.q);
   }
 
   function loadData() {
@@ -1929,6 +1957,10 @@
     set('[data-set="online"]', filters.setting === "online");
     set('[data-f="sf"]', filters.dist === "sf");
     set('[data-f="hide"]', filters.hide);
+    [].forEach.call(bar.querySelectorAll("[data-type]"), function (b) {
+      var on = !!(filters.types && filters.types.indexOf(b.getAttribute("data-type")) >= 0);
+      b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
     var inp = document.getElementById("fSearch");
     if (inp && document.activeElement !== inp && inp.value !== filters.q) inp.value = filters.q;
     document.getElementById("fClear").hidden = !filtersActive();
@@ -1966,6 +1998,8 @@
     var set = q.get("set"); filters.setting = (set === "inperson" || set === "online") ? set : "all";
     filters.dist = q.get("dist") === "sf" ? "sf" : "all";
     filters.hide = q.get("hide") === "1";
+    var ty = (q.get("type") || "").split(",").filter(function (c) { return EV_TYPES.some(function (t) { return t[0] === c; }); });
+    filters.types = ty.length ? ty : null;
   }
 
   function writeURL() {
@@ -1981,6 +2015,7 @@
     if (filters.setting !== "all") q.set("set", filters.setting);
     if (filters.dist === "sf") q.set("dist", "sf");
     if (filters.hide) q.set("hide", "1");
+    if (filters.types) q.set("type", filters.types.join(","));
     try { history.replaceState(null, "", location.pathname + "?" + q.toString()); } catch (e) {}
   }
 
@@ -2196,6 +2231,37 @@
     if (dpSel >= 0 && rows[dpSel]) { rows[dpSel].open = !rows[dpSel].open; clampPop(); }
   }
 
+  // ----- Key: event types and symbols, in a sheet behind the "ⓘ Key" button -----
+  function buildKey() {
+    var types = EV_TYPES.map(function (t) { return '<span class="k">' + t[1] + " " + t[2] + "</span>"; }).join("");
+    var syms =
+      '<span class="k"><span class="sw strong"></span> strong match (4–5)</span>' +
+      '<span class="k"><span class="sw blue"></span> match (1–3)</span>' +
+      '<span class="k"><span class="sw dashed"></span> unconfirmed (details not final)</span>' +
+      '<span class="k"><span class="sw grey"></span> past (dimmed)</span>' +
+      '<span class="k"><span class="pill new" style="font-size:0.6rem">new</span> newly found</span>' +
+      '<span class="k"><span class="pill verify" style="font-size:0.6rem">verify</span> unconfirmed</span>' +
+      '<span class="k">⚠️ event outside San Francisco</span>' +
+      '<span class="k"><span class="pill dist lg-reg">South Bay</span> region</span>';
+    document.getElementById("keySheet").innerHTML = '<button class="kclose" type="button" aria-label="Close key">✕</button>' +
+      '<section><h3>Event type</h3><div class="kgrid">' + types + '</div></section>' +
+      '<section><h3>Match &amp; status</h3><div class="kgrid">' + syms + "</div></section>";
+  }
+  function closeKey() {
+    var sh = document.getElementById("keySheet"); if (!sh || sh.hidden) return;
+    sh.hidden = true; document.getElementById("lgBtn").setAttribute("aria-expanded", "false");
+  }
+  function wireKey() {
+    var btn = document.getElementById("lgBtn"), sh = document.getElementById("keySheet");
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      sh.hidden = !sh.hidden; btn.setAttribute("aria-expanded", sh.hidden ? "false" : "true");
+    });
+    sh.addEventListener("click", function (e) { if (e.target.closest(".kclose")) closeKey(); e.stopPropagation(); });
+    document.addEventListener("click", closeKey);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeKey(); });
+  }
+
   // ----- Events wiring (delegated) -----
   function wire() {
     window.radarInitThemes(); window.radarInitExtras();
@@ -2216,11 +2282,15 @@
     });
 
     // Filter bar
+    document.getElementById("fTypes").innerHTML = EV_TYPES.map(function (t) {
+      return '<button class="fchip" data-type="' + t[0] + '" type="button" aria-pressed="false">' + t[1] + " " + t[2] + "</button>";
+    }).join("");
+    buildKey(); wireKey();
     document.getElementById("filterBar").addEventListener("click", function (e) {
       var chip = e.target.closest(".fchip");
       if (!chip) return;
       if (chip.id === "fClear") {
-        filters = { minScore: 0, sources: null, setting: "all", dist: "all", hide: false, q: "" };
+        filters = { minScore: 0, sources: null, setting: "all", dist: "all", hide: false, types: null, q: "" };
       } else if (chip.getAttribute("data-f") === "score") {
         filters.minScore = filters.minScore ? 0 : 4;
       } else if (chip.getAttribute("data-f") === "sf") {
@@ -2230,6 +2300,12 @@
       } else if (chip.getAttribute("data-set")) {
         var s = chip.getAttribute("data-set");
         filters.setting = (filters.setting === s) ? "all" : s;
+      } else if (chip.getAttribute("data-type")) {   // types toggle independently: pick any number
+        var code = chip.getAttribute("data-type");
+        var ts = filters.types ? filters.types.slice() : [];
+        var ti = ts.indexOf(code);
+        if (ti >= 0) ts.splice(ti, 1); else ts.push(code);
+        filters.types = ts.length ? ts : null;
       } else if (chip.getAttribute("data-src")) {
         var name = SRC_CODE[chip.getAttribute("data-src")];
         var cur = filters.sources ? filters.sources.slice() : [];
