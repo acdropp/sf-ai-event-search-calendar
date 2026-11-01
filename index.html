@@ -486,8 +486,11 @@
   }
   .ev.rich .ev-sub { font-size: 0.9em; font-weight: 400; }
   .ev.rich .ev-emo { letter-spacing: 0.06em; }
-  .cell[data-fit="2"] .ev-loc,
-  .cell[data-fit="1"] .ev-loc, .cell[data-fit="1"] .ev-emo,
+  .ev.rich .ev-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 5px; }   /* region tag and emojis share a row when it fits */
+  .ev.rich .ev-reg { font-size: 0.85em; padding: 0 5px; line-height: 1.5; white-space: nowrap; }
+  .cell[data-fit="3"] .ev-loc,
+  .cell[data-fit="2"] .ev-loc, .cell[data-fit="2"] .ev-emo, .cell[data-fit="2"] .ev-tags.no-reg,
+  .cell[data-fit="1"] .ev-loc, .cell[data-fit="1"] .ev-tags,
   .cell[data-fit="0"] .ev-sub { display: none; }
   .ev.rich[hidden] { display: none; }
   /* Portrait month stack: keep each month at its usual 44dvh so rich chips fit to it instead of stretching it */
@@ -967,7 +970,7 @@
   }
 
   // Rich chips (month / 2-week / 1-week / 3-day): each day block shows full event names, then adds time,
-  // type emojis and place while they still fit; as space shrinks they drop in reverse order.
+  // the out-of-SF region tag, type emojis and place while they still fit; as space shrinks they drop in reverse order.
   // Names always stay; if even the names overflow, the last chips hide behind "+N".
   function fitRich() {
     var host = document.querySelector("#cals.richmode:not([hidden])"); if (!host) return;
@@ -985,7 +988,7 @@
       c.classList.remove("crowded");
       [].forEach.call(chips, function (e) { e.hidden = false; e.classList.remove("clamp"); e.firstChild.style.webkitLineClamp = ""; });
       var over = function () { return c.scrollHeight > c.clientHeight + 1; };
-      var lvl = 3;
+      var lvl = 4;
       c.setAttribute("data-fit", lvl);
       while (lvl > 0 && over()) c.setAttribute("data-fit", --lvl);
       if (!over()) return;
@@ -1386,12 +1389,15 @@
       var emo = fmtTags(ev).map(function (f) { return f.emoji; }).join("");   // type emojis
       var t2 = ev.startTime ? (ev.startTime + (ev.endTime ? "–" + ev.endTime : "")) : "";
       var tip = warn + (t2 ? t2 + "  ·  " : "") + ev.name;
-      if (chipCap === Infinity) {   // rich chip: full name, then time, type emojis, place (fitRich drops them from the end)
-        var place = [ev.venue, ev.city].filter(Boolean).join(", ");
+      if (chipCap === Infinity) {   // rich chip: full name, time, region tag + type emojis (one row), place; fitRich drops them from the end
+        var place = chipPlace(ev);
+        var reg = regionInfo(ev).label;
+        var tags = (reg ? '<span class="pill dist ev-reg">' + esc(reg) + "</span>" : "") +
+          (emo ? '<span class="ev-emo">' + fmtTags(ev).map(function (f) { return f.emoji; }).join(" ") + "</span>" : "");
         html += '<a class="ev rich s-' + tier + (ev.needsVerification ? " verify" : "") + '" role="button" title="' + esc(tip) + '">' +
           '<span class="ev-name">' + nb + warn + esc(ev.name) + "</span>" +
           (t2 ? '<span class="ev-sub ev-time">' + esc(t2) + "</span>" : "") +
-          (emo ? '<span class="ev-sub ev-emo">' + fmtTags(ev).map(function (f) { return f.emoji; }).join(" ") + "</span>" : "") +
+          (tags ? '<span class="ev-sub ev-tags' + (reg ? "" : " no-reg") + (emo ? "" : " no-emo") + '">' + tags + "</span>" : "") +
           (place ? '<span class="ev-sub ev-loc">' + esc(place) + "</span>" : "") + "</a>";
         return;
       }
@@ -1437,6 +1443,14 @@
   }
 
   // Landscape / wide tile shows ONE month filling the view; portrait stacks three.
+  // Place line on calendar chips: a venue that's still TBC / hidden until you register shows just the city.
+  var PLACE_TBD = /\b(tb[acd]|to be (confirmed|announced|determined)|register to see|emailed to|after approval)\b/i;
+  function chipPlace(ev) {
+    var venue = ev.venue || "", city = ev.city || "";
+    if (PLACE_TBD.test(venue) && city) return city;
+    if (!venue || venue.toLowerCase() === city.toLowerCase()) return city;
+    return [venue, city].filter(Boolean).join(", ");
+  }
   function singleMode() {
     return window.matchMedia("(orientation: landscape)").matches;
   }
@@ -2004,9 +2018,8 @@
     closeDayPop();
     var y = window.scrollY;
     if (calMode === "week") weekStart = addDaysISO(weekStart, delta * 7);
-    else if (calMode === "2week") weekStart = addDaysISO(weekStart, delta * 14);
-    else if (calMode === "3day") weekStart = addDaysISO(weekStart, delta * 3);
-    else if (calMode === "day") weekStart = addDaysISO(weekStart, delta);
+    else if (calMode === "2week") weekStart = addDaysISO(weekStart, delta * 7);   // overlapping steps: one week at a time
+    else if (calMode === "3day" || calMode === "day") weekStart = addDaysISO(weekStart, delta);   // one day at a time
     else ref = addMonths(ref.y, ref.m, delta);
     render();
     writeURL();
