@@ -24,7 +24,7 @@ Radar digest with no manual step.
 | `SPEC.md` | The full as-built spec — architecture, data contract, features, pipeline, acceptance. |
 | `DESIGN.md` | The design spec — typography, colour themes and rules, header layout, per-view styling. |
 | `ROADMAP.md` | Phase-by-phase status (what shipped, what's declined). |
-| `HANDOFF.md` | Short operator's guide — how the pipeline runs, how to make changes. |
+| `OPERATING-GUIDE.md` | Short operator's guide — how the pipeline runs, how to make changes. |
 
 ## The shape of it (one paragraph)
 
@@ -54,9 +54,9 @@ Radar digest (artifact DB) ──▶ daily sync task ──▶ events.json ─�
 
 Edit `index.html` and push to `main`; GitHub Pages redeploys in ~1–2 minutes. The daily
 sync only ever writes `data/events.json`, so editing the page never collides with it.
-See `HANDOFF.md` for the full operator's guide.
+See `OPERATING-GUIDE.md` for the full operator's guide.
 
 ## Earlier planning docs
 
 The original build spec and handoff were first drafted as live Claude docs; the
-canonical, current versions now live in this repo (`SPEC.md`, `HANDOFF.md`, `ROADMAP.md`).
+canonical, current versions now live in this repo (`SPEC.md`, `OPERATING-GUIDE.md`, `ROADMAP.md`).
