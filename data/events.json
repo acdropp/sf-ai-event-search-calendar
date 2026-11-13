@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generatedAt": "2026-11-12T15:21:15Z",
+    "generatedAt": "2026-11-13T15:42:30Z",
     "lastRunLabel": "Nov 12, 2026 · 6:57am PT",
     "source": "SF AI Event Search digest (artifact DB)",
     "eventCount": 178,
     "newCount": 2,
     "datedCount": 139,
-    "pastCount": 79,
+    "pastCount": 84,
     "summary": "2 new today: VexoHacks AI Wearables Hackathon (Nov 14, Y Combinator — build AI wearable/voice experiences, score 3); and the next Build & Chill Project Jam (Nov 25, Hacker Dojo — recurring series continues, a generic project-jam edition with no AI theme this time, score 2). Both in-person SF/South Bay and free. Also RENAMED: last run's 'Ship an Agent-Powered Tool in One Night' is now listed as 'Walk Out With a Working AI Tool' (Nov 18, same event/venue); and the 3 events new yesterday (Walk Out, Multiplayer AI Thanksgiving, Trading Agents Winterhack) are now marked seen. Newly PAST since yesterday: ⭐Wiki3 Own Your Own AI + Build & Chill Nous AI Night (both Nov 11) plus the whole Nov 10 slate. THIS WEEK (Nov 12–18): Nov 12 (TODAY) — SGLang self-improving-agents + Design-with-Code (CCA DMBA) + PyLadies Builder Night + The Build Boutique (base44). Nov 13 (Fri) — ⭐On-Device AI: Cleared for Takeoff (Liquid×Qualcomm, runs fully offline, 5/5) + a packed hackathon slate (Multi-Modal Education @ Snowflake, EVOLVE 8090, AIE×MLH, AdaL Multimodal, Bay Area, GTransformer, Diwali Agent-to-Agent Nov 13–19). Nov 14 (Sat) — ⭐Physical AI (X Square Robot) + AI Research Hackathon (Iterate, 14–15) + Robots for Good + DNAForge AI×Biology (Berkeley) + Ground Truth + The Design Project + She Ships + PMAI Vibe Coding + VexoHacks (NEW). Nov 15 — Diwali Festiverse Agent-to-Agent (SF). Nov 17 — Robotics Researcher Night + SF Claude Impact Lab (Trust & Safety) + PEF AI Show & Tell (Palo Alto, Nov 18) + Stanford 30×30 buildathon (17–20). Nov 18 — Walk Out With a Working AI Tool + ClawMax Build Night.",
     "gaps": [
       "Hacker Dojo iCal STILL stale (DTSTAMP Oct 17; latest VEVENT Nov 1) — could NOT confirm a Nov 25 Wiki3 'Own Your Own AI' repeat. The Wiki3 Luma calendar (luma.com/Wiki3) also renders no dates server-side, and web search surfaced many undated Wiki3 slugs. Wiki3 Nov 11 is now PAST; next edition unconfirmed. (Good news: the recurring Build & Chill Project Jam DID surface a Nov 25 edition via foundercal — added this run.) Retry the iCal next run.",
