@@ -2140,17 +2140,23 @@
     list.classList.remove("drilled");
     // Drill-in: opening an event closes the others and gives it the whole popover;
     // closing it (click the title again) restores the list. Re-place so it stays in view.
+    // Remember where the list was scrolled before drilling in, and return there on collapse.
     var rows = list.querySelectorAll("details.lrow");
+    var savedTop = 0;
     [].forEach.call(rows, function (dd) {
       dd.addEventListener("toggle", function () {
+        var restore = null;
         if (dd.open) {
+          if (!list.classList.contains("drilled")) savedTop = list.scrollTop;
           [].forEach.call(rows, function (o) { if (o !== dd && o.open) o.open = false; });
           list.classList.add("drilled");
           list.scrollTop = 0;
         } else if (![].some.call(rows, function (o) { return o.open; })) {
           list.classList.remove("drilled");
+          restore = savedTop;
         }
         placePop();
+        if (restore !== null) list.scrollTop = restore;   // after placePop: the popover may have resized
       });
     });
     dpSel = -1;
