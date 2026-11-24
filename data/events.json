@@ -1,21 +1,21 @@
 {
   "meta": {
-    "generatedAt": "2026-11-23T15:22:20Z",
-    "lastRunLabel": "Nov 23, 2026 · 6:55am PT",
+    "generatedAt": "2026-11-24T15:21:39Z",
+    "lastRunLabel": "Nov 24, 2026 · 6:55am PT",
     "source": "SF AI Event Search digest (artifact DB)",
-    "eventCount": 227,
-    "newCount": 0,
-    "datedCount": 183,
-    "pastCount": 127,
-    "summary": "Nothing new to add today — no event cleared the sources that wasn't already tracked. One confirmation worth flagging: Punk Software Hack Night (Imbue) now has a CONFIRMED date — Dec 3, 6–10pm, SF — themed 'AI for Consumer Rights' (build AI assistants for unsubscribing, refunds, privacy). It was previously an undated series on watch; it's a 4/5 own-your-AI fit. Housekeeping: removed 2 now-past Nov 22 events (Breaking Models 'Leak & Build', Recursive Self-Improvement Hack); flipped last run's 3 new (Degrees of Freedom Embodied AI Builders Night, Artificial Analysis: State of Open Weights, Fly Brain & Tiny Machines BioCompute Hackathon) to seen. REGRESSION CONTINUES (5th+ run): every Meetup iCal still served a stale October cache (DTSTAMPs Oct 9–20: Hacker Dojo Oct 17, AI Builders & Learners Oct 15, Oakland Claude Code Oct 14, Noisebridge Oct 20, ODSC Oct 9, Frontier Tech Oct 11); the sf-conversational-ai feed returned empty (no VEVENTs). No Meetup confirmations today — Meetup-sourced events left as previously confirmed. Luma JS calendars still render October/past snapshots server-side: strong own-your-AI events surfaced only as 'Past Event' with no future date exposed (Vibe Coding Nights #47 'Fast Local', AI Agents SF #13 'Local AI using OSS Models', Studio 45 'Local AI Workshop', Agent Harness Hackathon w/ NVIDIA DGX Spark prize, tokens& 'Self-Evolving Agents') — none addable. Wiki3 'Own Your Own AI' (your 5/5 Hacker Dojo gold standard) STILL unconfirmed — series page shows only the past Sep 30. AI Tinkerers page rendered only past events this run; its Dec 3/4/8 nights carried as previously confirmed. THIS WEEK (Nov 23–29): Nov 23 (TODAY) — BREAKATHON by BotGauge + Multiplayer AI Hackathon (Thanksgiving, AWS Loft) + Festiverse Diwali + Degrees of Freedom Embodied AI Builders Night (Mission Robotics). Nov 24 — SF Non-Slop Hackathon (Pangram) + HackwithBay 4.0 + Artificial Analysis: State of Open Weights. Nov 25 — Build & Chill Project Jam (Hacker Dojo, Santa Clara). Nov 28 — Physical AI Hack (tokens&) + Mobile AI Hackathon (Cactus × Nothing × Hugging Face). Nov 29 — SF × MIT Hack Day (Peptides) + Draki Pink Hackathon.",
+    "eventCount": 228,
+    "newCount": 1,
+    "datedCount": 184,
+    "pastCount": 131,
+    "summary": "1 new today: How to Train LLMs to Beat Frontier Models (Dec 1, AWS Builder Loft SF) — a hands-on workshop, run with AWS experts + Phonely, where you train your own smaller model to beat a frontier model on a narrow task. Strong own-your-AI fit (train-your-own-model, not just calling an API); vendor-hosted but real build work, 4/5. Surfaced via Cerebral Valley. Housekeeping: pruned 4 now-past Nov 23 events (BREAKATHON by BotGauge, Degrees of Freedom Embodied AI Builders Night, Festiverse Diwali, Multiplayer AI Hackathon Thanksgiving); no events were flagged new last run, so nothing to flip. AGGREGATORS SWEPT FRESH: ushackathons (26 in-window events) and foundercal (15) both current — every dated event they list is already tracked, none genuinely new (ITCHATHON Dec 5 correctly excluded as waste-industry; AI Build Lab for Founders Dec 2 excluded as an accelerator demo day). REGRESSION CONTINUES (6th+ run): every Meetup iCal still served a stale October cache — Hacker Dojo DTSTAMP Oct 17 (latest VEVENT Nov 1), Oakland Claude Code Oct 14 (events Oct 14–28), AI Builders & Learners SF Oct 15 (reaches the Dec 22 book club). AI Tinkerers page rendered only past (July 2026) events this run — its Dec 3/4/8 nights carried as previously confirmed. Luma JS calendars (genai-sf, aws-builder-loft) still render an October snapshot; strong own-your-AI finds surfaced only undated/past via web search (Open Source AI Hackathon 'Meet Dobby', Studio 45 'Local AI Workshop', VCN #47 'Fast Local', AI Agents SF #13 'Local AI using OSS Models') — none addable. Wiki3 'Own Your Own AI' (your 5/5 Hacker Dojo gold standard) STILL unconfirmed — series page shows only the past Sep 30. THIS WEEK (Nov 24–30): Nov 24 (TODAY) — SF Non-Slop Hackathon (Pangram) + HackWithBay 4.0 (AWS Loft) + Artificial Analysis: State of Open Weights. Nov 25 — Build & Chill Project Jam (Hacker Dojo, Santa Clara). Nov 28 — Physical AI Hack (tokens&) + Mobile AI Hackathon (Cactus × Nothing × Hugging Face). Nov 29 — SF × MIT Hack Day (Peptides) + Draki Pink Hackathon. Just after: Dec 1 — How to Train LLMs to Beat Frontier Models (NEW, AWS Builder Loft); Dec 3 — Punk Software Hack Night 'AI for Consumer Rights' (Imbue) + AI Tinkerers Agent Infrastructure Night.",
     "gaps": [
-      "REGRESSION CONTINUES (5th+ run): every Meetup iCal feed STILL served a stale October cache — DTSTAMPs Hacker Dojo Oct 17, AI Builders & Learners Oct 15 (reaches Dec 22 book club), Oakland Claude Code Oct 14, Noisebridge Oct 20, ODSC Oct 9, Frontier Tech Oct 11. The sf-conversational-ai (Foundry Live) feed returned EMPTY — no VEVENTs. No Meetup confirmations today; Meetup-sourced events left as previously confirmed, none altered. Persistent Meetup CDN cache issue — recheck next run.",
+      "Meetup iCal regression continues (6th+ run): every feed still served a stale October cache — Hacker Dojo DTSTAMP Oct 17 (latest VEVENT Nov 1, incl. the past Wiki3 Oct 28), Oakland Claude Code Oct 14 (events Oct 14–28), AI Builders & Learners SF Oct 15 (reaches the Dec 22 book club). No Meetup confirmations today; Meetup-sourced events left as previously confirmed, none altered. Persistent CDN cache issue — recheck next run.",
       "Wiki3 'Own Your Own AI' (Hacker Dojo, your 5/5 gold standard) STILL unconfirmed — series page (ngrgbvyjcmbnc) shows only the past Sep 30 and the Hacker Dojo iCal was stale again. On watch (5/5 when it runs).",
-      "Luma calendar/event pages STILL render only an October/past snapshot server-side (JS pages). Strong own-your-AI events surfaced via web search appeared only as 'Past Event' with no future date: Vibe Coding Nights #47 'Fast Local' (Frontier Tower, local open-weights speed tuning), AI Agents SF #13 'Local AI using Open Source AI Models' (Digital Jungle SF, AI Alliance), Studio 45 'Local AI Workshop' (run models on your own machine), Agent Harness Hackathon (Bright Data SF, top prize an NVIDIA DGX Spark), tokens& 'Self-Evolving Agents'. None addable without a confirmable future date — on watch.",
-      "AI Tinkerers (sf.aitinkerers.org) rendered ONLY past events this run — did not re-expose the Dec 3 Agent Infrastructure Night, Dec 4 GTM Engineering Demo Night, or Dec 8 inaugural Cybersecurity meetup it showed last run. Those carried as previously confirmed; watch for January editions.",
-      "Recurring own-your-AI 5/5 series still undated/past (on watch): Vibe Code Nights (luma/vibe-code-nights), Ollama local+OSS meetup (luma/devs), Founders Inc Night Hack (luma/nighthack — still shows the past Oct 30), NVIDIA Spark/GB10. Punk Software Hack Night (Imbue) is now DATED Dec 3 via ushackathons.",
+      "AI Tinkerers SF (sf.aitinkerers.org) rendered ONLY past events this run (latest July 2026) — did not re-expose the Dec 3 Agent Infrastructure Night, Dec 4 GTM Engineering Demo Night or Dec 8 inaugural Cybersecurity meetup. Those carried as previously confirmed; watch for January editions.",
+      "Luma JS calendars (genai-sf, aws-builder-loft-events) still render an October snapshot server-side. Strong own-your-AI events surfaced only undated/past via web search: Open Source AI Hackathon 'Meet Dobby' (luma/wd7adqa4), Studio 45 'Local AI Workshop' (luma/zf1cgtgu), Vibe Coding Nights #47 'Fast Local' (luma/vcn-47-fast-local), AI Agents SF #13 'Local AI using Open Source AI Models' (luma/ix7u04gw). None addable without a confirmable future date — on watch.",
+      "Recurring own-your-AI 5/5 series still undated/past (on watch): Vibe Code Nights (luma/vibe-code-nights), Ollama local+OSS meetup (luma/devs), Founders Inc Night Hack (luma/nighthack — still shows the past Oct 30), NVIDIA Spark/GB10 local-AI hackathons.",
       "Voxel51 / SF Frontier Tech: in-window sessions are all virtual webinars or in-person OUT OF AREA (UC San Diego Jan 28, ASU Jan 30, Phoenix Feb 2) — skipped per in-person-SF-first. On watch for a next in-person SF/Bay session.",
-      "Considered but SKIPPED this run: AI Build Lab for Founders (Dec 2 — founder-accelerator demo day/P26, not a community hack night), ITCHATHON (Dec 5 — waste industry, out of scope), Muse Ember Hackathon (remote, not Bay Area), and various out-of-area global/online hackathons from search.",
+      "Considered but SKIPPED this run: AI Build Lab for Founders P26 Demo Day (Dec 2 — accelerator demo day, not a community hack night), ITCHATHON (Dec 5 — waste industry, out of scope), and out-of-area/online hackathons surfaced in search.",
       "Facebook-hosted events out of scope (platform not reachable) — skipped."
     ],
     "tracked": [
@@ -30,19 +30,24 @@
         "why": "Your group. iCal STILL stale this run (Oct 15 cache). Previously-confirmed online 'Own Your AI' series carried: Model Factory Dec 9, AI Homelab w/ Flyte Dec 16, Illustrated Guide to AI Agents (book club) Dec 22, Evals book club Jan 26. Watch for the next IN-PERSON own-your-AI hack night."
       },
       {
+        "name": "AWS Builder Loft",
+        "url": "https://luma.com/aws-builder-loft-events",
+        "why": "Frequent hands-on hackathons/workshops at 525 Market St. NEW this run: How to Train LLMs to Beat Frontier Models (Dec 1, train-your-own-model workshop, via Cerebral Valley). Also tracked: AI Demo Night Dec 4, Agentic AI Hackathon 2.0 Dec 15, Trading Agents Winterhack Dec 18. Luma page renders Oct-only; swept via Cerebral Valley/aggregators."
+      },
+      {
         "name": "Punk Software Hack Night (Imbue)",
         "url": "https://luma.com/h18z7837",
-        "why": "NOW DATED — Dec 3, 6–10pm, SF, 'AI for Consumer Rights'. Imbue's anti-lock-in, user-controllable-agents ethos, 4/5. Biweekly; watch for the next instance after Dec 3."
+        "why": "Confirmed Dec 3, 6–10pm, SF, 'AI for Consumer Rights'. Imbue's anti-lock-in, user-controllable-agents ethos, 4/5. Biweekly; watch for the next instance after Dec 3."
       },
       {
         "name": "AI Tinkerers SF",
         "url": "https://sf.aitinkerers.org/",
-        "why": "Page rendered only PAST events this run. Carried from last confirmation: Agent Infrastructure Night (Dec 3), GTM Engineering Demo Night (Dec 4), inaugural AI Tinkerers in Cybersecurity (Dec 8, Pier 39). Watch for January editions."
+        "why": "Page rendered only PAST events this run (latest July 2026). Carried from last confirmation: Agent Infrastructure Night (Dec 3), GTM Engineering Demo Night (Dec 4), inaugural AI Tinkerers in Cybersecurity (Dec 8, Pier 39). Watch for January editions."
       },
       {
         "name": "Build & Chill / Project Jam (Hacker Dojo)",
         "url": "https://www.meetup.com/hackerdojo/",
-        "why": "Recurring biweekly build+social at your gold-standard Hacker Dojo. Nov 25 carried + Dec 9 reconfirmed (foundercal). Watch for AI-themed editions."
+        "why": "Recurring biweekly build+social at your gold-standard Hacker Dojo. Nov 25 imminent + Dec 9 reconfirmed (foundercal). Watch for AI-themed editions."
       },
       {
         "name": "Claude Community Events",
@@ -52,12 +57,17 @@
       {
         "name": "AI Alliance SF / local-AI meetups",
         "url": "https://luma.com/ix7u04gw",
-        "why": "NEW on watch — AI Agents SF #13 'Local AI using Open Source AI Models' (Digital Jungle SF, AI Alliance) and Studio 45 'Local AI Workshop' (run models on your own machine) both surfaced as strong own-your-AI fits but only as past events. Watch for next dated SF instances."
+        "why": "On watch — AI Agents SF #13 'Local AI using Open Source AI Models' (Digital Jungle SF, AI Alliance) and Studio 45 'Local AI Workshop' (run models on your own machine) both strong own-your-AI fits but surfaced only as past/undated. Watch for next dated SF instances."
+      },
+      {
+        "name": "Open-model / Dobby hackathons",
+        "url": "https://luma.com/wd7adqa4",
+        "why": "NEW on watch — 'Open Source AI Hackathon: Meet Dobby' (Sentient's open model) surfaced via search as a strong own-your-AI fit but with no confirmable future date (Luma renders Oct snapshot). Watch for a dated SF instance."
       },
       {
         "name": "Mission Robotics · Embodied AI Builders Nights",
         "url": "https://luma.com/mission-u38j",
-        "why": "Host on watch — Degrees of Freedom embodied-AI builders night (Nov 23, now seen). Open build + show-and-tell with hardware/sims/policies; watch for future editions."
+        "why": "Host on watch — Degrees of Freedom embodied-AI builders night ran Nov 23 (now pruned). Open build + show-and-tell with hardware/sims/policies; watch for future editions."
       },
       {
         "name": "Anthropic × Postman — Agents & APIs Hackathon",
@@ -67,7 +77,7 @@
       {
         "name": "Oakland Claude Code Enthusiasts",
         "url": "https://www.meetup.com/claude-code-enthusiasts-evening-social-club/",
-        "why": "Near-daily hands-on coding-agent evenings (East Bay, 4/5). iCal served only an Oct cache again this run; next instance unconfirmed — on watch."
+        "why": "Near-daily hands-on coding-agent evenings (East Bay, 4/5). iCal served only an Oct 14 cache again this run (events Oct 14–28); next instance unconfirmed — on watch."
       },
       {
         "name": "Ollama · Local & Open-Source AI Developer Meetup",
@@ -77,12 +87,7 @@
       {
         "name": "Vibe Coding Nights / Vibe Night Demos",
         "url": "https://luma.com/vibe-code-nights",
-        "why": "Local-models build+demo nights at Frontier Tower / SF Vibe House. #47 'Fast Local' (local open-weights speed tuning) surfaced as past this run; calendar still 'Past Event'. On watch — 5/5 when they run."
-      },
-      {
-        "name": "AWS Builder Loft",
-        "url": "https://luma.com/aws-builder-loft-events",
-        "why": "Frequent hands-on hackathons at 525 Market St. Tracked via aggregators: Multiplayer AI Hackathon Nov 23, AI Demo Night Dec 4, Agentic AI Hackathon 2.0 Dec 15, Trading Agents Winterhack Dec 18."
+        "why": "Local-models build+demo nights at Frontier Tower / SF Vibe House. #47 'Fast Local' (local open-weights speed tuning) surfaced as past again this run; calendar still 'Past Event'. On watch — 5/5 when they run."
       },
       {
         "name": "Devnovate",
@@ -107,22 +112,27 @@
       {
         "name": "comfy.org (ComfyUI)",
         "url": "https://www.comfy.org/events",
-        "why": "Open-source ComfyUI build nights — all 'Past' as of this check (latest SF Oct 28). On watch for the next SF/Bay hands-on night."
+        "why": "Open-source ComfyUI build nights — all 'Past' as of last check (latest SF Oct 28). On watch for the next SF/Bay hands-on night."
       },
       {
         "name": "ODSC AI SF",
         "url": "https://www.meetup.com/san-francisco-odsc/events/",
-        "why": "Free hands-on hackathons (ODSC × Nebius — next Dec 29 Burlingame, tracked, 4/5). iCal stale this run (Oct 9 cache). Paid conferences excluded."
+        "why": "Free hands-on hackathons (ODSC × Nebius — next Dec 29 Burlingame, tracked, 4/5). iCal stale this run. Paid conferences excluded."
       },
       {
         "name": "foundercal (SF aggregator)",
         "url": "https://foundercal.com/cities/sf/hackathons",
-        "why": "Reliable — swept fresh this run. Dense through late Nov/early Dec, thins after mid-Dec (last listing Jan 12 Company Brain hackathon)."
+        "why": "Reliable — swept fresh this run (15 in-window events). Dense through early Dec, thins after mid-Dec; last listing Jan 12 Company Brain hackathon. No Feb listings yet."
       },
       {
         "name": "ushackathons (SF aggregator)",
         "url": "https://ushackathons.com/hackathons/san-francisco",
-        "why": "Richest coverage — swept fresh this run; reconfirmed 28 in-window events and their dates, and surfaced the confirmed Punk Software Dec 3 date. Thins after December (last Jan 30 OffScript)."
+        "why": "Richest coverage — swept fresh this run; reconfirmed 26 in-window events and their dates. Thins after December; last in-window Jan 30 OffScript (Feb 27 Earth Code just beyond window)."
+      },
+      {
+        "name": "Cerebral Valley",
+        "url": "https://cerebralvalley.ai/events",
+        "why": "Swept fresh this run — surfaced the NEW Dec 1 'How to Train LLMs to Beat Frontier Models' at AWS Builder Loft. Good source for AWS Loft + open-model events."
       }
     ]
   },
@@ -4457,6 +4467,37 @@
       "url": "https://ushackathons.com/events/sf-mit-hack-day-peptides",
       "venue": "San Francisco (venue TBC)",
       "id": "sf-mit-hack-day-peptides"
+    },
+    {
+      "address": "525 Market St",
+      "city": "San Francisco",
+      "date": "2026-12-01",
+      "dateDisplay": "Dec 1",
+      "distanceNote": "",
+      "endTime": "",
+      "fit": "Hands-on own-your-AI: train your own smaller model to beat a frontier model on a narrow task, run with AWS experts + Phonely. In-person at AWS Builder Loft SF. Vendor-hosted but real build work and a train-your-own-model thesis rather than just calling an API.",
+      "membership": "None required",
+      "name": "How to Train LLMs to Beat Frontier Models",
+      "needsVerification": true,
+      "price": "Free",
+      "score": 4,
+      "setting": "in-person",
+      "source": "Cerebral Valley / AWS Builder Loft",
+      "startTime": "6:00 PM",
+      "status": "new",
+      "tags": [
+        "🛠️ build",
+        "👩🏽‍🏫 lecture"
+      ],
+      "themes": [
+        "Train/fine-tune your own model",
+        "A smaller model beating a frontier model on a narrow task",
+        "Hands-on with AWS experts + Phonely"
+      ],
+      "tz": "PT",
+      "url": "https://builder.aws.com/connect/event/f75e5fdf-9e5a-3c10-9057-2592e9919a60",
+      "venue": "AWS Builder Loft",
+      "id": "train-llms-beat-frontier-models"
     },
     {
       "address": "",
