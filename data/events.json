@@ -1,45 +1,50 @@
 {
   "meta": {
-    "generatedAt": "2026-11-26T15:21:43Z",
-    "lastRunLabel": "Nov 26, 2026 · 6:52am PT",
+    "generatedAt": "2026-11-27T15:21:30Z",
+    "lastRunLabel": "Nov 27, 2026 · 6:52am PT",
     "source": "SF AI Event Search digest (artifact DB)",
-    "eventCount": 243,
-    "newCount": 4,
+    "eventCount": 244,
+    "newCount": 1,
     "datedCount": 198,
     "pastCount": 136,
-    "summary": "4 new today — all online Voxel51 OSS-community meetups (January): MCP/Agents/Skills (Jan 14, the pick of them), Physical AI 'General Purpose Robots' (Jan 13), AI/ML/CV (Jan 21), and Physical AI 'Purpose-Built Robots' (Jan 27). Honest read: nothing new in-person or local-first was confirmable today. Two things worth flagging. (1) The Hacker Dojo Meetup iCal REGRESSED to a stale October cache again (it was briefly fresh just yesterday) — your 5/5 gold-standard Wiki3 'Own Your Own AI', Breaking Models AI Security (Nov 28), Software Projects with AI (Dec 1) and the Build & Chill jams carry from yesterday's confirmed pull, and the next Wiki3 instance (~Dec 9) is still unconfirmed. (2) Four strong own-your-AI SF events surfaced in search — Studio 45 'Local AI Workshop' (Qwen3 + llama.cpp, run open weights free on your own machine), 'AI Agents SF #13 — Local AI using Open-Source Models' (Digital Jungle SF), Homebrew Club 'Private ChatGPT on Your Own Computer' (installs Jan, covers quantization/MCP), and 'Open Source AI Hackathon: Meet Dobby' (Sentient × Fireworks) — but every one renders as a dateless 'Past Event' on Luma with closed/waitlist registration, so they're on the watch list, not logged with a fabricated date. Verify for dated next instances. Housekeeping: pruned 2 now-past Nov 25 events (Wiki3 Own Your Own AI, Build & Chill GTM Special); flipped yesterday's 10 'new' events to seen. Also excluded Cerebral Valley 'Hackallax' (Parallax × Anthropic, Dec 5–6) — it's a hardware-fabrication weekend (CNC / 3D-print / air-powered-motor), AI tie is only Claude API-credit prizes. THIS WEEK (Nov 26–Dec 2): Nov 27 — Imbue 'Build Tools for Good' + Hacker's Book Club: Deep Learning (Hacker Dojo). Nov 28 — Physical AI Hack (tokens&) + Mobile AI Hackathon (Cactus × Nothing × HF) + Breaking Models: AI Security (Hacker Dojo, 5). Nov 29 — SF × MIT Hack Day (Peptides) + Draki Pink Hackathon. Dec 1 — How to Train LLMs to Beat Frontier Models (AWS Loft) + Software Projects with AI (Hacker Dojo). Dec 2 — Build & Chill Project Jam (Hacker Dojo) + Stoneleap No-Code Game Jam.",
+    "summary": "1 new today: 'AI Bootlegging: Distilling Frontier Models for Local Power' (Frontier Tower Makerspace, SF) — a direct own-your-AI fit: distill frontier models into small models you can run locally, with an open-source distillation-tool demo. It's a deep-dive talk + live demo rather than a structured build, and no date is posted yet (the page shows Open Registration, not Past) — on watch, added dateless, verify for a posted date. Honest read: nothing else new or in-person was confirmable today. IMPORTANT TRAP AVOIDED: the Cerebral Valley weekly newsletter (the year-less 'week of December 1st' URL) returned a STALE 2025 edition — its events (Building for the Real World 'Dec 2', Gemini 3 SF Hackathon 'Dec 6', Agentic Orchestration 'Jan 10', Gemini 3 SuperHack 'Jan 31') all verify on cerebralvalley.ai to Dec 2025 / Jan 2026 and show 'Event Finished' (Jan 10 2027 is a Sunday, not the Saturday they list), so NONE were added — no fabricated 2027 dates. Source health: the Hacker Dojo Meetup iCal is STILL stale (latest Nov 1) and the Wiki3 series page still serves the Sep 30 past event — your 5/5 Wiki3 'Own Your Own AI', Breaking Models AI Security (Nov 28), Software Projects with AI (Dec 1) and Build & Chill (Dec 2, Dec 9) carry from prior confirmation; next Wiki3 instance still unconfirmed. The SF Frontier Tech (Voxel51) iCal was fresh and reconfirmed the Dec 10 AI/ML/CV meetup. Housekeeping: flipped yesterday's 4 Voxel51 January online meetups to seen. No past events to prune (earliest dated events are today). THIS WEEK (Nov 27–Dec 3): Nov 27 (today) — Build Tools for Good (Imbue) + Hacker's Book Club: Deep Learning (Hacker Dojo). Nov 28 — Physical AI Hack (tokens&) + Mobile AI Hackathon (Cactus × Nothing × HF) + Breaking Models: AI Security S5 (Hacker Dojo). Nov 29 — SF × MIT Hack Day (Peptides) + Draki Pink Hackathon. Dec 1 — How to Train LLMs to Beat Frontier Models (AWS Loft) + Software Projects with AI (Hacker Dojo). Dec 2 — Build & Chill Project Jam (Hacker Dojo) + Stoneleap No-Code Game Jam. Dec 3 — Punk Software Hack Night: AI for Consumer Rights (Imbue) + AI Tinkerers Agent Infrastructure Night + Antler SF After Dark V3: Building with Voice.",
     "gaps": [
-      "REGRESSION: the Hacker Dojo Meetup iCal is serving a stale Oct 17 cache again (events only through Nov 1) after being briefly fresh yesterday. Your gold-standard Wiki3 / Breaking Models (Nov 28) / Software Projects (Dec 1) / Build & Chill (Dec 2, Dec 9) carried from yesterday's confirmed pull. The Wiki3 'Own Your Own AI' series page (ngrgbvyjcmbnc) also served a stale Sept 30 past event — next instance (~Dec 9) unconfirmed.",
-      "STRONG own-your-AI fits found but NOT added (all render as dateless 'Past Event' on Luma with closed/waitlist registration — no fabricated dates): Studio 45 'Local AI Workshop' w/ Qwen3+llama.cpp (luma/zf1cgtgu, 45 29th St SF); 'AI Agents SF #13 — Local AI using Open-Source Models' (luma/ix7u04gw, Digital Jungle SF, AI Alliance SF — numbered series, #14 likely); Homebrew Club 'Private ChatGPT on Your Own Computer / Running AI Locally' w/ Jan (luma/r8ft63zq, 111 Maiden Ln SF); 'Open Source AI Hackathon: Meet Dobby' (luma/wd7adqa4, Sentient × Fireworks). All on watch — verify for a dated next instance.",
-      "STILL STALE this run: ai-builders-and-learners-sf iCal (Oct 15 — only Dec 22 book club surfaced; Model Factory Dec 9, AI Homelab w/ Flyte Dec 16, RLHF Dec 8, Evals Jan 26 carried as previously confirmed), san-francisco-odsc (Oct 9), Oakland Claude Code Enthusiasts (Oct 14, events only through Oct 28), noisebridge (Oct 20, no in-window AI).",
-      "sf-conversational-ai (Foundry Live) iCal returned no VEVENTs again this run.",
-      "Luma JS calendars (genai-sf, devnovate, nighthack, spark-hack-sf, openmodelhack) + comfy.org/events (ComfyUI, latest Nov 4) still render an October snapshot server-side. Recurring 5/5 own-your-AI series surfaced only undated/past: Vibe Coding Nights, Vibe Night Demos, Founders Inc Night Hack (still shows past Mar 8), NVIDIA Spark/GB10 local-AI hack, Open Model Hack (Gradient × DeepMind), The Builder Base Buildathon. On watch.",
-      "ClawCamp 'Sovereign AI — Own Your Stack' (luma/hx7ywmxp, Temple SF) now shows it requires a WeAreDevelopers conference pass to enter — may be conf-gated; still no date posted. Kept on watch (status flipped to seen).",
-      "AI Tinkerers SF (sf.aitinkerers.org) served only past events (through mid-2026) — Agent Infrastructure Night (Dec 3), GTM Engineering Demo Night (Dec 4), Cybersecurity meetup (Dec 8) carried from prior confirmation.",
-      "Voxel51 in-person Physical AI workshops this run are all out-of-area (Sacramento Jan 25, LA Jan 27, UC San Diego Jan 28) — excluded; their online meetups (Jan 13/14/21/27) added.",
-      "Aggregators swept fresh: ushackathons (26 in-window) + foundercal — every dated event already tracked, no new. Cerebral Valley thin (through Dec 5). Facebook-hosted events out of scope (platform not reachable).",
-      "Window extends to ~Feb 24 but both aggregators thin after Jan 30 (last tracked: OffScript Jan 30); the new Voxel51 online meetups give the only late-Jan coverage. February genuinely sparse this far out."
+      "Hacker Dojo Meetup iCal STILL stale (latest event Nov 1) and the Wiki3 'Own Your Own AI' series page (ngrgbvyjcmbnc) still serves a Sep 30 past event — your 5/5 Wiki3, Breaking Models AI Security (Nov 28), Software Projects with AI (Dec 1) and Build & Chill (Dec 2, Dec 9) carry from prior confirmation; next Wiki3 instance (~mid-Dec) still unconfirmed.",
+      "Cerebral Valley beehiiv weekly newsletters are a FABRICATION TRAP: the year-less URL 'cerebral-valley-week-of-december-1st' returned a stale 2025 edition. Its events verify to Dec 2025 / Jan 2026 and show 'Event Finished' on cerebralvalley.ai (Building for the Real World, Gemini 3 SF Hackathon, Agentic Orchestration Jan 10 2026 = Saturday, Gemini 3 SuperHack Jan 31 2026). NONE added. Don't trust year-less CV newsletter URLs for dates — always cross-check the event page's year + day-of-week.",
+      "ai-builders-and-learners-sf iCal still stale (shows only 4 events, latest the Dec 22 book club) — Own-Your-AI Model Factory (Dec 9), AI Homelab w/ Flyte (Dec 16) and RLHF book club (Dec 8) carry from prior confirmation.",
+      "Oakland Claude Code Enthusiasts iCal still stale (events only through Oct 28); noisebridge (no in-window AI, stale Oct 28); san-francisco-odsc (stale Oct 29, only the past Oct 28 Nebius hackathon — the Dec 29 ODSC × Nebius is tracked separately); sf-conversational-ai (Foundry Live) returned no VEVENTs again.",
+      "SF Frontier Tech (Voxel51) iCal was FRESH this run — reconfirmed the Dec 10 AI/ML/CV online meetup (already tracked). Good structured source.",
+      "Dateless 5/5 Luma watch events STILL dateless/Past this run — 'AI Agents SF #13: Local AI using Open-Source Models' (ix7u04gw, Digital Jungle SF), Studio 45 'Local AI Workshop' (zf1cgtgu, Qwen3+llama.cpp), Ollama local+OSS meetup (devs6, Shack15), Punk Software Hack Night next instance after Dec 3. No dated next instances to add — all on watch.",
+      "Luma JS calendars (genai-sf, devnovate, nighthack, vibe-code-nights, sfvibehouse) + comfy.org/events still render October snapshots server-side. Recurring 5/5 own-your-AI series (Vibe Coding Nights, Vibe Night Demos, Founders Inc Night Hack, NVIDIA Spark/GB10 local-AI hack, Open Model Hack) surfaced only undated/past. On watch.",
+      "NEW dateless add this run: 'AI Bootlegging: Distilling Frontier Models for Local Power' (luma/ai-bootlegging-distilling-frontier-model, Frontier Tower Makerspace SF) — page shows Open Registration but no date. Verify for a posted date.",
+      "Window extends to ~Feb 25 but February remains genuinely sparse this far out — the Voxel51 online meetups (Jan 13/14/21/27) are the latest confirmable coverage; aggregators thin after late January. Facebook-hosted events out of scope.",
+      "Cocoa & Coding: Holiday Hack Night (luma/tx7jqjtc, Build Club SF, AI-tagged build challenge) surfaced but renders dateless/'Past Event' — not added. Build Club on watch for a dated holiday edition."
     ],
     "tracked": [
       {
         "name": "Wiki3 · Own Your Own AI (Hacker Dojo)",
         "url": "https://www.meetup.com/hackerdojo/events/315973980/",
-        "why": "YOUR 5/5 GOLD STANDARD — run open models locally (Unsloth Desktop + open-source Agent Zero). Nov 25 instance now past/pruned. Hacker Dojo iCal regressed to stale Oct cache this run; next instance (~Dec 9) unconfirmed. Watch the series page + new Luma slugs (jbh63nxa seen)."
+        "why": "YOUR 5/5 GOLD STANDARD — run open models locally (Unsloth Desktop + open-source Agent Zero). Hacker Dojo iCal + series page both still stale (Nov 1 / Sep 30 cache) this run; next instance (~mid-Dec) unconfirmed. Watch the series page + new Luma slugs."
       },
       {
-        "name": "Local-first SF workshop series (undated on Luma)",
+        "name": "AI Bootlegging · Distilling Frontier Models for Local Power",
+        "url": "https://luma.com/ai-bootlegging-distilling-frontier-model",
+        "why": "NEW this run (4/5) — distill frontier models into small models you run locally; open-source distillation-tool demo, at Frontier Tower Makerspace SF. Open Registration but no date posted. Deep-dive talk + demo, not a structured build. Verify for a posted date."
+      },
+      {
+        "name": "Local-first SF workshop cluster (undated on Luma)",
         "url": "https://luma.com/ix7u04gw",
-        "why": "NEW watch cluster — four strong own-your-AI SF events all rendering dateless/'Past Event' on Luma: Studio 45 'Local AI Workshop' (Qwen3+llama.cpp, luma/zf1cgtgu), 'AI Agents SF #13 — Local AI using Open-Source Models' (luma/ix7u04gw, numbered series), Homebrew Club 'Private ChatGPT on Your Own Computer' (luma/r8ft63zq), 'Open Source AI Hackathon: Meet Dobby' (luma/wd7adqa4). Verify for dated next instances — these are bullseye 5/5 fits."
+        "why": "Watch cluster — strong own-your-AI SF events still dateless/'Past' on Luma: 'AI Agents SF #13 — Local AI using Open-Source Models' (ix7u04gw, Digital Jungle SF), Studio 45 'Local AI Workshop' (zf1cgtgu, Qwen3+llama.cpp), Homebrew Club 'Private ChatGPT on Your Own Computer' (r8ft63zq), 'Open Source AI Hackathon: Meet Dobby' (wd7adqa4). Verify for dated next instances — bullseye 5/5 fits."
       },
       {
         "name": "ClawCamp · Sovereign AI / Own Your Stack",
         "url": "https://luma.com/hx7ywmxp",
-        "why": "5/5 own-your-AI topic (Unsloth Desktop, quantization, MCP) at Temple SF — BUT now shows a WeAreDevelopers conference-pass requirement to enter, and still no date. May be conf-gated. On watch; verify date + whether it's open-entry."
+        "why": "5/5 own-your-AI topic (Unsloth Desktop, quantization, MCP) at Temple SF — but shows a WeAreDevelopers conference-pass requirement to enter, and still no date. May be conf-gated. On watch; verify date + open-entry."
       },
       {
         "name": "Ollama · Local & open-source AI developer meetup",
         "url": "https://luma.com/devs6",
-        "why": "On watch (5/5) — Ollama × Cerebral Valley local+OSS lightning-demo meetup (Shack15 / Ferry Building). Registration closed, no date posted. Watch for the next dated SF instance."
+        "why": "On watch (5/5) — Ollama × Cerebral Valley local+OSS lightning-demo meetup (Shack15 / Ferry Building). Registration closed, no date posted this run. Watch for the next dated SF instance."
       },
       {
         "name": "Vibe Coding Nights / Vibe Night Demos",
@@ -49,27 +54,27 @@
       {
         "name": "Breaking Models · AI Security (Hacker Dojo)",
         "url": "https://www.meetup.com/hackerdojo/events/316465042/",
-        "why": "The AI-security workshop series you've engaged with — Session 5 confirmed Nov 28 (LLM info-leak + threat-model a secure agentic system). Recurring at your gold-standard Hacker Dojo; watch for later sessions."
+        "why": "AI-security workshop series you've engaged with — Session 5 (Nov 28, LLM info-leak + threat-model a secure agentic system) carries from prior confirmation (iCal stale). Recurring at your gold-standard Hacker Dojo; watch for later sessions."
       },
       {
         "name": "AI Builders & Learners SF (Own Your AI series)",
         "url": "https://www.meetup.com/ai-builders-and-learners-sf/events/",
-        "why": "Your group. iCal still stale (Oct 15). Previously-confirmed 'Own Your AI' series carried: Model Factory Dec 9, AI Homelab w/ Flyte Dec 16, Illustrated Guide to AI Agents book club Dec 22, Evals book club Jan 26. Watch for the next IN-PERSON own-your-AI hack night."
+        "why": "Your group. iCal still stale (shows 4 events). Carried: Own-Your-AI Model Factory (Dec 9), AI Homelab w/ Flyte (Dec 16), RLHF book club (Dec 8), Illustrated Guide to AI Agents (Dec 22, iCal-confirmed), Evals book club (Jan 26). Watch for the next IN-PERSON own-your-AI hack night."
       },
       {
         "name": "Punk Software Hack Night (Imbue)",
         "url": "https://luma.com/h18z7837",
-        "why": "Imbue's anti-lock-in, user-controllable-agents ethos, 4/5. Confirmed Dec 3 ('AI for Consumer Rights'). Imbue also ran 'Build Tools for Good' Nov 27. Biweekly; watch for the next instance after Dec 3."
+        "why": "Imbue's anti-lock-in, user-controllable-agents ethos, 4/5. Confirmed Dec 3 ('AI for Consumer Rights'). Biweekly; next instance after Dec 3 still dateless on Luma — watch."
       },
       {
         "name": "AI Tinkerers SF",
         "url": "https://sf.aitinkerers.org/",
-        "why": "Site served only past events this run. Carried from prior confirmation: Agent Infrastructure Night (Dec 3), GTM Engineering Demo Night (Dec 4), inaugural AI Tinkerers in Cybersecurity (Dec 8, Pier 39). Watch for January editions."
+        "why": "Site served only past events this run. Carried: Agent Infrastructure Night (Dec 3), GTM Engineering Demo Night (Dec 4), AI Tinkerers in Cybersecurity (Dec 8, Pier 39). Watch for January editions."
       },
       {
         "name": "AWS Builder Loft",
         "url": "https://luma.com/aws-builder-loft-events",
-        "why": "Frequent hands-on hackathons/workshops at 525 Market St. Tracked in-window: Train LLMs to Beat Frontier Models (Dec 1), AI Demo Night Dec 4, Agentic AI Hackathon 2.0 Dec 15, Trading Agents Winterhack Dec 18. Luma renders Oct-only; swept via Cerebral Valley/aggregators."
+        "why": "Frequent hands-on hackathons/workshops at 525 Market St. Tracked in-window: Train LLMs to Beat Frontier Models (Dec 1), AI Demo Night (Dec 4), Agentic AI Hackathon 2.0 (Dec 15), Trading Agents Winterhack (Dec 18). Luma renders Oct-only; swept via Cerebral Valley/aggregators."
       },
       {
         "name": "Claude Community Events",
@@ -79,7 +84,7 @@
       {
         "name": "Build & Chill / Project Jam (Hacker Dojo)",
         "url": "https://www.meetup.com/hackerdojo/",
-        "why": "Recurring biweekly build+social at your gold-standard Hacker Dojo — Dec 2 and Dec 9 confirmed (via yesterday's fresh iCal + foundercal). Nov 25 GTM Special now past/pruned. Watch for AI-themed editions."
+        "why": "Recurring biweekly build+social at your gold-standard Hacker Dojo — Dec 2 and Dec 9 carry from prior confirmation (iCal stale this run). Watch for AI-themed editions."
       },
       {
         "name": "Oakland Claude Code Enthusiasts",
@@ -89,12 +94,12 @@
       {
         "name": "Voxel51 / SF Frontier Tech",
         "url": "https://www.voxel51.com/events",
-        "why": "Open-source (FiftyOne) CV/robotics community. Online meetups ADDED this run: MCP/Agents/Skills (Jan 14, 3/5), Physical AI robots (Jan 13 + Jan 27), AI/ML/CV (Jan 21) — all 2–3/5 (online). In-person Physical AI sessions this run all out-of-area (Sacramento/LA/SD). Watch for an in-person SF session."
+        "why": "Open-source (FiftyOne) CV/robotics community. iCal FRESH this run — reconfirmed Dec 10 AI/ML/CV online meetup. January online meetups flipped to seen: MCP/Agents/Skills (Jan 14, 3/5), Physical AI robots (Jan 13 + Jan 27), AI/ML/CV (Jan 21). In-person Physical AI sessions still out-of-area. Watch for an in-person SF session."
       },
       {
         "name": "Founders Inc · Night Hack (Fort Mason)",
         "url": "https://luma.com/nighthack",
-        "why": "Build sprints + live demos, robots+agents welcome. Luma still shows a past (Mar 8) edition; next edition on watch."
+        "why": "Build sprints + live demos, robots+agents welcome. Luma still shows a past edition; next edition on watch."
       },
       {
         "name": "NVIDIA Spark / GB10 Local-AI Hackathon series",
@@ -109,17 +114,17 @@
       {
         "name": "ushackathons (SF aggregator)",
         "url": "https://ushackathons.com/hackathons/san-francisco",
-        "why": "Richest coverage — swept fresh (26 in-window, all already tracked; no new this run). Thins after December; last in-window OffScript Jan 30 (Earth Code Feb 27 just beyond window)."
+        "why": "Richest coverage — swept fresh yesterday (26 in-window, all tracked). Thins after December; last in-window OffScript Jan 30."
       },
       {
         "name": "foundercal (SF aggregator)",
         "url": "https://foundercal.com/cities/sf/hackathons",
-        "why": "Reliable — swept fresh, all dated events already tracked. Dense through mid-Dec, thins after; last listing AI Agent Workshop + Company Brain Hackathon (Jan 12)."
+        "why": "Reliable — swept fresh, all dated events tracked. Dense through mid-Dec, thins after; last listing AI Agent Workshop + Company Brain Hackathon (Jan 12)."
       },
       {
         "name": "Cerebral Valley",
         "url": "https://cerebralvalley.ai/events",
-        "why": "Swept fresh — only through Dec 5 this run. 'Hackallax' (Parallax × Anthropic, Dec 5–6) EXCLUDED as a hardware-fabrication weekend (not AI build). Good source for AWS Loft + open-model events; check the /san-francisco sub-page for later dates."
+        "why": "CAUTION: year-less beehiiv newsletter URLs returned a stale 2025 edition this run (see gaps). Use cerebralvalley.ai/events + cross-check each event page's year/day-of-week. Good source for AWS Loft + open-model events when dates verify."
       }
     ]
   },
@@ -5996,7 +6001,7 @@
       "setting": "online",
       "source": "Voxel51",
       "startTime": "Not shown",
-      "status": "new",
+      "status": "seen",
       "tags": [
         "👩🏽‍🏫 lecture",
         "🗣️ discussion"
@@ -6028,7 +6033,7 @@
       "setting": "online",
       "source": "Voxel51",
       "startTime": "Not shown",
-      "status": "new",
+      "status": "seen",
       "tags": [
         "👩🏽‍🏫 lecture",
         "🗣️ discussion",
@@ -6061,7 +6066,7 @@
       "setting": "online",
       "source": "Voxel51",
       "startTime": "Not shown",
-      "status": "new",
+      "status": "seen",
       "tags": [
         "👩🏽‍🏫 lecture",
         "🗣️ discussion"
@@ -6217,7 +6222,7 @@
       "setting": "online",
       "source": "Voxel51",
       "startTime": "Not shown",
-      "status": "new",
+      "status": "seen",
       "tags": [
         "👩🏽‍🏫 lecture",
         "🗣️ discussion"
@@ -6422,6 +6427,37 @@
       "url": "https://luma.com/agentslab",
       "venue": "San Francisco (register to see address)",
       "id": "agentslab"
+    },
+    {
+      "address": "995 Market St, San Francisco, CA",
+      "city": "San Francisco",
+      "date": null,
+      "dateDisplay": "Date TBC",
+      "distanceNote": "",
+      "endTime": null,
+      "fit": "Dead-on your own-your-AI thesis — distill frontier models into small models you can run locally, with an open-source distillation tool demo, in-person at Frontier Tower SF. A deep-dive talk + live demo rather than a structured hands-on build, and no date is posted yet (page shows Open Registration, not Past) — verify.",
+      "membership": "Open Registration",
+      "name": "AI Bootlegging: Distilling Frontier Models for Local Power",
+      "needsVerification": true,
+      "price": "Not shown",
+      "score": 4,
+      "setting": "in-person",
+      "source": "Luma / Frontier Tower",
+      "startTime": null,
+      "status": "new",
+      "tags": [
+        "👩🏽‍🏫 lecture",
+        "🎤 demo"
+      ],
+      "themes": [
+        "Distillation to shrink frontier models into smaller models you can run yourself for 'local power'",
+        "Live end-to-end demo of an open-source distillation tool; distillation vs quantization vs fine-tuning",
+        "Frontier Tower Makerspace; own-your-AI / local-models angle"
+      ],
+      "tz": "PT",
+      "url": "https://luma.com/ai-bootlegging-distilling-frontier-model",
+      "venue": "Frontier Tower, Makerspace (995 Market St)",
+      "id": "ai-bootlegging-distilling-frontier-model"
     },
     {
       "address": "San Jose, CA (register to see address)",
